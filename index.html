@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LaPLE Reflex Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap');
+        body { font-family: 'Pretendard', sans-serif; -webkit-tap-highlight-color: transparent; background-color: #f8fafc; }
+        .hidden-view { display: none !important; }
+        .grid-cell { aspect-ratio: 1 / 1; }
+        #bg-ad-content { background: linear-gradient(145deg, #dbeafe 0%, #eff6ff 100%); }
+        .modal-ad-banner { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div id="view-intro" class="flex flex-col items-center justify-center min-h-screen p-6">
+        <div class="w-full max-w-sm flex flex-col space-y-8">
+            <div class="text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-[22px] shadow-lg mb-4">
+                    <span class="text-3xl text-white">⚡</span>
+                </div>
+                <h1 class="text-3xl font-black text-slate-900 mb-1 tracking-tight">Reflex Challenge</h1>
+                <p class="text-blue-600 font-bold text-sm italic">HSBC Customer Beta Test</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 space-y-4">
+                <div class="flex items-start space-x-3 text-sm font-medium text-slate-600">
+                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">1</span>
+                    <p>Enter your <strong class="text-blue-600 font-bold underline">nickname</strong> for the event.</p>
+                </div>
+                <div class="flex items-start space-x-3 text-sm font-medium text-slate-600 border-t border-slate-50 pt-4">
+                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">2</span>
+                    <p>Tap numbers <strong class="text-blue-600 font-bold underline">1 to 25</strong> in order as fast as possible.</p>
+                </div>
+                <div class="flex items-start space-x-3 text-sm font-medium text-slate-600 border-t border-slate-50 pt-4">
+                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">3</span>
+                    <p>Winners in Top 100 will receive prizes next Monday!</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <input type="text" id="nickname-input" placeholder="Enter nickname" 
+                    class="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-blue-500 focus:outline-none text-center font-bold text-lg bg-white">
+                <button onclick="checkAndStart()" class="w-full py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-lg shadow-blue-100 active:scale-95 transition-all text-lg font-sans">
+                    START CHALLENGE
+                </button>
+                <button onclick="fetchRankings()" class="w-full py-2 text-slate-400 font-semibold text-sm">
+                    View Leaderboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-game" class="hidden-view flex flex-col items-center justify-center min-h-screen p-4 text-center">
+        <div class="w-full max-w-sm flex flex-col">
+            <div class="flex justify-between items-center bg-white p-4 rounded-t-3xl border border-slate-100 border-b-0 shadow-sm relative z-20">
+                <div class="text-center flex-1 border-r border-slate-50">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">NEXT</span>
+                    <span id="next-number" class="block text-2xl font-black text-blue-600">1</span>
+                </div>
+                <div class="text-center flex-1">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">TIME</span>
+                    <span id="timer" class="block text-2xl font-black text-slate-800 tabular-nums">0.00s</span>
+                </div>
+            </div>
+
+            <div class="relative w-full rounded-b-3xl shadow-xl border border-slate-100 overflow-hidden bg-white z-10">
+                <div id="bg-ad-layer" class="absolute inset-0 flex items-center justify-center p-6 opacity-0 transition-opacity duration-500 z-0">
+                    <div id="bg-ad-content" class="w-full h-full rounded-2xl flex flex-col items-center justify-center text-center border-2 border-blue-200 p-4">
+                        <p class="text-blue-800 font-bold text-xl mb-2 leading-tight">Reliable Choice for Family</p>
+                        <p class="text-blue-900 font-black text-4xl tracking-tight break-keep font-sans uppercase">Kyobo LaPLE<br>Term Life</p>
+                    </div>
+                </div>
+                <div id="game-board" class="grid grid-cols-5 gap-1.5 p-2 pt-0 relative z-10"></div>
+            </div>
+            <button onclick="goHome()" class="mt-8 py-2 text-slate-400 text-xs font-medium underline underline-offset-4">Quit</button>
+        </div>
+    </div>
+
+    <div id="view-ranking" class="hidden-view fixed inset-0 bg-white z-50 flex flex-col">
+        <div class="p-6 border-b flex justify-between items-center bg-blue-600">
+            <h2 class="text-xl font-bold text-white uppercase tracking-tighter">🏆 TOP 100 Rankings</h2>
+            <button onclick="goHome()" class="text-white text-3xl font-light">&times;</button>
+        </div>
+        <div class="bg-blue-50 px-6 py-3 flex justify-between items-center text-[11px] font-bold text-blue-800 border-b border-blue-100">
+            <span>👑 1-3rd: Up to 10K P</span>
+            <span>🎁 10th units: Special Prize</span>
+        </div>
+        <div class="flex-1 overflow-y-auto px-6">
+            <table class="w-full border-collapse">
+                <tbody id="ranking-list"></tbody>
+            </table>
+        </div>
+        <div class="p-4 border-t bg-slate-50 text-center">
+            <p class="text-blue-600 font-bold text-xs mb-3">📢 Prizes will be sent next Monday.</p>
+            <button onclick="goHome()" class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl shadow-lg uppercase">Back to Home</button>
+        </div>
+    </div>
+
+    <div id="result-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-6 z-[60]">
+        <div class="bg-white rounded-[40px] p-8 w-full max-w-sm text-center shadow-2xl overflow-hidden">
+            <div class="text-5xl mb-4 text-yellow-400">🏆</div>
+            <p id="result-nickname" class="text-blue-600 font-bold mb-1"></p>
+            <p id="result-time" class="text-4xl font-black text-slate-900 mb-6 tracking-tight">0.00s</p>
+            
+            <a href="https://m.lifeplanet.co.kr:444/lpds2/insurance/term-life-insurance.dev?inflow=20" target="_blank" class="modal-ad-banner block rounded-2xl p-4 mb-6 border border-blue-100 shadow-sm">
+                <p class="text-blue-800 text-[10px] font-bold mb-0.5 opacity-80 uppercase">A Reliable Choice for Family</p>
+                <p class="text-blue-900 text-lg font-black leading-tight">Kyobo LaPLE Term Life</p>
+                <p class="mt-1 text-blue-600 text-[10px] font-bold">View Product Details →</p>
+            </a>
+            <button onclick="handleShowRankingClick()" class="w-full py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-lg">View Leaderboard</button>
+        </div>
+    </div>
+
+    <script>
+        // --- [설정] GAS URL ---
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxmbvRZCy7OCez2_VTwsFDJ3xcQ07nUPjP1W5GsvzI7PRgJouFd3D8Oj_SpS5VQYLEJ/exec";
+
+        // --- [로직] 쿠키 추출 함수 ---
+        function getCookie(name) {
+            let value = "; " + document.cookie;
+            let parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+            return "UNKNOWN_USER"; // 쿠키가 없을 때 기본값
+        }
+
+        const userUID = getCookie("UID"); // 앱 웹뷰에서 넘겨준 UID 획득
+        console.log("Logged UID:", userUID);
+
+        const views = { intro: document.getElementById('view-intro'), game: document.getElementById('view-game'), ranking: document.getElementById('view-ranking') };
+        const board = document.getElementById('game-board'), timerDisplay = document.getElementById('timer'), nextNumDisplay = document.getElementById('next-number');
+        const nicknameInput = document.getElementById('nickname-input'), resultModal = document.getElementById('result-modal'), bgAdLayer = document.getElementById('bg-ad-layer');
+
+        let nextNumber = 1, timerInterval = null, startTime = null, isGameRunning = false, currentNickname = "";
+
+        function switchView(v) { Object.values(views).forEach(x => x.classList.add('hidden-view')); views[v].classList.remove('hidden-view'); }
+
+        function checkAndStart() {
+            currentNickname = nicknameInput.value.trim();
+            if (!currentNickname) { alert("Please enter your nickname!"); return; }
+            switchView('game'); initGame();
+        }
+
+        function updateAdOpacity() { bgAdLayer.style.opacity = ((nextNumber - 1) / 25).toFixed(2); }
+
+        function initGame() {
+            nextNumber = 1; nextNumDisplay.textContent = '1'; timerDisplay.textContent = '0.00s';
+            updateAdOpacity(); createBoard();
+            setTimeout(() => {
+                isGameRunning = true; startTime = Date.now();
+                timerInterval = setInterval(() => { timerDisplay.textContent = ((Date.now() - startTime) / 1000).toFixed(2) + 's'; }, 10);
+            }, 400);
+        }
+
+        function createBoard() {
+            board.innerHTML = '';
+            const nums = Array.from({length: 25}, (_, i) => i + 1).sort(() => Math.random() - 0.5);
+            nums.forEach(num => {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell flex items-center justify-center bg-white/95 border border-slate-100 text-xl font-black text-slate-700 rounded-2xl cursor-pointer active:bg-blue-600 active:text-white transition-all shadow-sm z-10';
+                cell.textContent = num;
+                cell.onclick = () => {
+                    if (!isGameRunning) return;
+                    if (num === nextNumber) {
+                        cell.classList.add('opacity-0', 'pointer-events-none');
+                        nextNumber++; updateAdOpacity();
+                        if (nextNumber > 25) endGame(); else nextNumDisplay.textContent = nextNumber;
+                    }
+                };
+                board.appendChild(cell);
+            });
+        }
+
+        async function endGame() {
+            clearInterval(timerInterval); isGameRunning = false; bgAdLayer.style.opacity = '1';
+            const finalTime = parseFloat(((Date.now() - startTime) / 1000).toFixed(2));
+
+            // [GAS 데이터 전송] 닉네임, 기록, 쿠키에서 가져온 UID 발송
+            try {
+                fetch(GAS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // CORS 이슈 방지
+                    body: JSON.stringify({ nickname: currentNickname, record: finalTime, uid: userUID })
+                });
+            } catch (e) { console.error("Data send failed", e); }
+
+            setTimeout(() => {
+                document.getElementById('result-nickname').textContent = currentNickname + "'s Score";
+                document.getElementById('result-time').textContent = finalTime + "s";
+                resultModal.classList.remove('hidden');
+            }, 500);
+        }
+
+        function handleShowRankingClick() { resultModal.classList.add('hidden'); fetchRankings(); }
+
+        // [GAS에서 랭킹 불러오기]
+        async function fetchRankings() {
+            const list = document.getElementById('ranking-list');
+            list.innerHTML = '<tr><td colspan="3" class="py-20 text-center text-slate-400">Loading Leaderboard...</td></tr>';
+            switchView('ranking');
+
+            try {
+                const response = await fetch(GAS_URL);
+                const data = await response.json();
+                
+                list.innerHTML = data.map((x, i) => {
+                    let rank = i + 1;
+                    let prizeInfo = "", rowBg = "", icon = rank;
+                    if (rank === 1) { icon = "👑"; prizeInfo = "<span class='text-amber-600'>[Gold] ₩10K</span>"; rowBg = "bg-amber-50"; }
+                    else if (rank === 2) { icon = "🥈"; prizeInfo = "<span class='text-slate-500'>[Silver] ₩5K</span>"; rowBg = "bg-slate-50"; }
+                    else if (rank === 3) { icon = "🥉"; prizeInfo = "<span class='text-orange-500'>[Bronze] ₩3K</span>"; rowBg = "bg-orange-50"; }
+                    else if (rank % 10 === 0) { prizeInfo = "<span class='text-blue-600 font-bold'>[Special] ₩1K</span>"; rowBg = "bg-blue-50/30"; }
+
+                    return `
+                        <tr class="${rowBg} border-b border-slate-50 transition-colors">
+                            <td class="py-4 pl-6 font-black text-center w-14 text-lg">${icon}</td>
+                            <td class="py-4 px-2">
+                                <div class="font-bold text-slate-800">${x.n}</div>
+                                <div class="text-[10px] text-slate-400 font-medium">${prizeInfo || 'Challenger'}</div>
+                            </td>
+                            <td class="py-4 pr-6 text-right font-mono font-bold text-slate-900">${x.t.toFixed(2)}s</td>
+                        </tr>`;
+                }).join('');
+            } catch (e) {
+                list.innerHTML = '<tr><td colspan="3" class="py-20 text-center text-red-400">Connection Error</td></tr>';
+            }
+        }
+
+        function goHome() { clearInterval(timerInterval); isGameRunning = false; resultModal.classList.add('hidden'); switchView('intro'); }
+    </script>
+</body>
+</html>
