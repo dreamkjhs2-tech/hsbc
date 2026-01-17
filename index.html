@@ -86,8 +86,8 @@
             <button onclick="goHome()" class="text-white text-3xl font-light">&times;</button>
         </div>
         <div class="bg-blue-50 px-6 py-3 flex justify-between items-center text-[11px] font-bold text-blue-800 border-b border-blue-100">
-            <span>👑 1-3rd: Up to 10K P</span>
-            <span>🎁 10th units: Special Prize</span>
+            <span>👑 1st : 10,000P, 2nd : 5,000P, 3rd: 3,000P</span>
+            <span>🎁 10th units: 1,000P</span>
         </div>
         <div class="flex-1 overflow-y-auto px-6">
             <table class="w-full border-collapse">
@@ -209,10 +209,10 @@
                 list.innerHTML = data.map((x, i) => {
                     let rank = i + 1;
                     let prizeInfo = "", rowBg = "", icon = rank;
-                    if (rank === 1) { icon = "👑"; prizeInfo = "<span class='text-amber-600'>[Gold] ₩10K</span>"; rowBg = "bg-amber-50"; }
-                    else if (rank === 2) { icon = "🥈"; prizeInfo = "<span class='text-slate-500'>[Silver] ₩5K</span>"; rowBg = "bg-slate-50"; }
-                    else if (rank === 3) { icon = "🥉"; prizeInfo = "<span class='text-orange-500'>[Bronze] ₩3K</span>"; rowBg = "bg-orange-50"; }
-                    else if (rank % 10 === 0) { prizeInfo = "<span class='text-blue-600 font-bold'>[Special] ₩1K</span>"; rowBg = "bg-blue-50/30"; }
+                    if (rank === 1) { icon = "👑"; prizeInfo = "<span class='text-amber-600'>[Gold] 10,000P</span>"; rowBg = "bg-amber-50"; }
+                    else if (rank === 2) { icon = "🥈"; prizeInfo = "<span class='text-slate-500'>[Silver] 5,000P</span>"; rowBg = "bg-slate-50"; }
+                    else if (rank === 3) { icon = "🥉"; prizeInfo = "<span class='text-orange-500'>[Bronze] 3,000P</span>"; rowBg = "bg-orange-50"; }
+                    else if (rank % 10 === 0) { prizeInfo = "<span class='text-blue-600 font-bold'>[Special] 1,000P</span>"; rowBg = "bg-blue-50/30"; }
 
                     return `
                         <tr class="${rowBg} border-b border-slate-50 transition-colors">
