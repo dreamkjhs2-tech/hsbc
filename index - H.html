@@ -19,7 +19,7 @@
     <div id="view-intro" class="flex flex-col items-center justify-center min-h-screen p-6">
         <div class="w-full max-w-sm flex flex-col space-y-8">
             <div class="text-center">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-[22px] shadow-lg mb-4">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-[22px] shadow-lg mb-4">
                     <span class="text-3xl text-white">⚡</span>
                 </div>
                 <h1 id="txt-mainTitle" class="text-3xl font-black text-slate-900 mb-1 tracking-tight">Reflex Challenge</h1>
@@ -28,16 +28,16 @@
 
             <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 space-y-4 text-sm font-medium text-slate-600">
                 <div class="flex items-start space-x-3">
-                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5">1</span>
-                    <p>Enter your <strong class="text-blue-600 font-bold">nickname</strong> to start.</p>
+                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">1</span>
+                    <p>Enter your <strong class="text-blue-600 font-bold">nickname</strong> to start the event.</p>
                 </div>
                 <div class="flex items-start space-x-3 border-t border-slate-50 pt-4">
-                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5">2</span>
-                    <p>Tap numbers <strong class="text-blue-600 font-bold underline">1 to 25</strong> fast.</p>
+                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">2</span>
+                    <p>Tap numbers <strong class="text-blue-600 font-bold underline">1 to 25</strong> in order as fast as possible.</p>
                 </div>
                 <div class="flex items-start space-x-3 border-t border-slate-50 pt-4">
-                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5">3</span>
-                    <p>Top 100 will win prizes!</p>
+                    <span class="bg-blue-50 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">3</span>
+                    <p>Check the leaderboard and aim for the top prize!</p>
                 </div>
             </div>
 
@@ -70,17 +70,23 @@
     </div>
 
     <div id="view-ranking" class="hidden-view fixed inset-0 bg-white z-50 flex flex-col">
-        <div class="p-6 border-b flex justify-between items-center bg-blue-600 text-white"><h2 class="text-xl font-bold uppercase">🏆 Rankings</h2><button onclick="goHome()" class="text-3xl">&times;</button></div>
+        <div class="p-6 border-b flex justify-between items-center bg-blue-600 text-white">
+            <h2 class="text-xl font-bold uppercase">🏆 Rankings</h2>
+            <button onclick="goHome()" class="text-3xl">&times;</button>
+        </div>
         <div class="bg-blue-50 px-6 py-3 flex justify-between items-center text-[10px] font-bold text-blue-800 border-b border-blue-100">
             <span id="txt-prizeInfo1">👑 1-3rd: 10K P</span>
             <span id="txt-prizeInfo2">🎁 10th units: 1K P</span>
         </div>
         <div class="flex-1 overflow-y-auto px-6"><table class="w-full border-collapse"><tbody id="ranking-list"></tbody></table></div>
-        <div class="p-4 border-t bg-slate-50 text-center"><p class="text-blue-600 font-bold text-xs mb-3">📢 Prizes sent next Monday.</p><button onclick="goHome()" class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl">BACK TO HOME</button></div>
+        <div class="p-4 border-t bg-slate-50 text-center">
+            <p class="text-blue-600 font-bold text-xs mb-3">📢 Prizes sent next Monday.</p>
+            <button onclick="goHome()" class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl">BACK TO HOME</button>
+        </div>
     </div>
 
     <div id="result-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-6 z-[60]">
-        <div class="bg-white rounded-[40px] p-8 w-full max-w-sm text-center shadow-2xl">
+        <div class="bg-white rounded-[40px] p-8 w-full max-w-sm text-center shadow-2xl overflow-hidden">
             <div class="text-5xl mb-4">🏆</div>
             <p id="result-nickname" class="text-blue-600 font-bold mb-1"></p>
             <p id="result-time" class="text-4xl font-black text-slate-900 mb-6 tracking-tight">0.00s</p>
@@ -88,14 +94,15 @@
             <a id="lnk-modalAd" href="#" target="_blank" class="modal-ad-banner block rounded-2xl p-4 mb-6 border border-blue-100">
                 <p id="txt-modalAdText" class="text-blue-800 text-[10px] font-bold mb-0.5 opacity-80 uppercase leading-none">A Reliable Choice</p>
                 <p id="txt-modalAdBrand" class="text-blue-900 text-lg font-black leading-tight">Kyobo LaPLE</p>
-                <p class="mt-1 text-blue-600 text-[10px] font-bold">VIEW PRODUCT →</p>
+                <p class="mt-1 text-blue-600 text-[10px] font-bold">VIEW PRODUCT DETAILS →</p>
             </a>
-            <button onclick="handleShowRankingClick()" class="w-full py-4 bg-blue-600 text-white font-bold rounded-2xl">VIEW LEADERBOARD</button>
+            <button onclick="handleShowRankingClick()" class="w-full py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-lg">VIEW LEADERBOARD</button>
         </div>
     </div>
 
     <script>
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbxK0C4QhvWbhPL7BJtwl_NlSyyGiE2zYf-dehqi-gVak26B4EXbu7FIFyRMmGKxJEXE/exec";
+        // 기획자님의 현재 활성화된 GAS URL
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxmbvRZCy7OCez2_VTwsFDJ3xcQ07nUPjP1W5GsvzI7PRgJouFd3D8Oj_SpS5VQYLEJ/exec";
 
         function getCookie(name) {
             let value = "; " + document.cookie; let parts = value.split("; " + name + "=");
@@ -110,48 +117,50 @@
 
         let nextNumber = 1, timerInterval = null, startTime = null, isGameRunning = false, currentNickname = "";
 
+        // 페이지 로드 시 시트 설정값 가져오기
         window.onload = loadSettings;
 
-async function loadSettings() {
-    try {
-        // 1. 주소 뒤에 시간을 붙여 캐시를 방지합니다. (매번 새 데이터를 가져옴)
-        const response = await fetch(GAS_URL + "?t=" + new Date().getTime()); 
-        const data = await response.json();
-        
-        // 2. 데이터가 잘 오는지 확인하기 위해 브라우저 콘솔(F12)에 출력합니다.
-        console.log("Loaded Data from Google Sheets:", data);
-        
-        if (data.settings) {
-            const s = data.settings;
-            // 3. 실제 화면 요소들에 시트의 값을 적용합니다.
-            if(s.mainTitle) document.getElementById('txt-mainTitle').innerText = s.mainTitle;
-            if(s.prizeInfo1) document.getElementById('txt-prizeInfo1').innerText = s.prizeInfo1;
-            if(s.prizeInfo2) document.getElementById('txt-prizeInfo2').innerText = s.prizeInfo2;
-            if(s.adText) document.getElementById('txt-adText').innerText = s.adText;
-            if(s.adBrand) document.getElementById('txt-adBrand').innerHTML = s.adBrand.replace(/\n/g, "<br>");
-            if(s.modalAdText) document.getElementById('txt-modalAdText').innerText = s.modalAdText;
-            if(s.modalAdBrand) document.getElementById('txt-modalAdBrand').innerText = s.modalAdBrand;
-            if(s.modalAdLink) document.getElementById('lnk-modalAd').href = s.modalAdLink;
-            
-            console.log("UI updated with sheet settings!");
+        async function loadSettings() {
+            try {
+                // 캐시 방지를 위해 시간 파라미터(?t=) 추가
+                const response = await fetch(GAS_URL + "?t=" + new Date().getTime());
+                const data = await response.json();
+                
+                console.log("Sheet Data Received:", data);
+
+                if (data.settings) {
+                    const s = data.settings;
+                    if(s.mainTitle) document.getElementById('txt-mainTitle').innerText = s.mainTitle;
+                    if(s.prizeInfo1) document.getElementById('txt-prizeInfo1').innerText = s.prizeInfo1;
+                    if(s.prizeInfo2) document.getElementById('txt-prizeInfo2').innerText = s.prizeInfo2;
+                    if(s.adText) document.getElementById('txt-adText').innerText = s.adText;
+                    if(s.adBrand) document.getElementById('txt-adBrand').innerHTML = s.adBrand.replace(/\n/g, "<br>");
+                    if(s.modalAdText) document.getElementById('txt-modalAdText').innerText = s.modalAdText;
+                    if(s.modalAdBrand) document.getElementById('txt-modalAdBrand').innerText = s.modalAdBrand;
+                    if(s.modalAdLink) document.getElementById('lnk-modalAd').href = s.modalAdLink;
+                    
+                    console.log("UI Updated Successfully!");
+                }
+            } catch (e) { 
+                console.error("CMS Load Failed:", e); 
+            }
         }
-    } catch (e) { 
-        console.error("CMS load failed:", e); 
-    }
-}
 
         function switchView(v) { Object.values(views).forEach(x => x.classList.add('hidden-view')); views[v].classList.remove('hidden-view'); }
+        
         function checkAndStart() {
             currentNickname = nicknameInput.value.trim();
             if (!currentNickname) { alert("Please enter nickname!"); return; }
             switchView('game'); initGame();
         }
+
         function updateAdOpacity() { bgAdLayer.style.opacity = ((nextNumber - 1) / 25).toFixed(2); }
 
         function initGame() {
             nextNumber = 1; nextNumDisplay.textContent = '1'; timerDisplay.textContent = '0.00s';
             updateAdOpacity(); createBoard();
-            setTimeout(() => { isGameRunning = true; startTime = Date.now();
+            setTimeout(() => { 
+                isGameRunning = true; startTime = Date.now();
                 timerInterval = setInterval(() => { timerDisplay.textContent = ((Date.now() - startTime) / 1000).toFixed(2) + 's'; }, 10);
             }, 400);
         }
@@ -177,7 +186,14 @@ async function loadSettings() {
         async function endGame() {
             clearInterval(timerInterval); isGameRunning = false; bgAdLayer.style.opacity = '1';
             const finalTime = parseFloat(((Date.now() - startTime) / 1000).toFixed(2));
-            fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ nickname: currentNickname, record: finalTime, uid: userUID }) });
+            
+            // 기록 전송
+            fetch(GAS_URL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: JSON.stringify({ nickname: currentNickname, record: finalTime, uid: userUID }) 
+            });
+
             setTimeout(() => {
                 document.getElementById('result-nickname').textContent = currentNickname + "'s Score";
                 document.getElementById('result-time').textContent = finalTime + "s";
@@ -189,10 +205,11 @@ async function loadSettings() {
 
         async function fetchRankings() {
             const list = document.getElementById('ranking-list');
-            list.innerHTML = '<tr><td colspan="3" class="py-20 text-center text-slate-400">Loading...</td></tr>';
+            list.innerHTML = '<tr><td colspan="3" class="py-20 text-center text-slate-400">Loading Rankings...</td></tr>';
             switchView('ranking');
             try {
-                const response = await fetch(GAS_URL);
+                // 매번 랭킹 호출 시에도 캐시 방지 적용
+                const response = await fetch(GAS_URL + "?t=" + new Date().getTime());
                 const data = await response.json();
                 list.innerHTML = data.rankings.map((x, i) => {
                     let r = i + 1, info = "", bg = "", icon = r;
@@ -202,7 +219,9 @@ async function loadSettings() {
                     else if (r % 10 === 0) { info = "<span class='text-blue-600 font-bold'>₩1K</span>"; bg = "bg-blue-50/30"; }
                     return `<tr class="${bg} border-b border-slate-50"><td class="py-4 pl-6 text-center w-14 text-lg">${icon}</td><td class="py-4 px-2"><div class="font-bold text-slate-800">${x.n}</div><div class="text-[10px] text-slate-400 font-medium">${info || 'Challenger'}</div></td><td class="py-4 pr-6 text-right font-mono font-bold text-slate-900">${x.t.toFixed(2)}s</td></tr>`;
                 }).join('');
-            } catch (e) { list.innerHTML = '<tr><td colspan="3" class="py-20 text-center text-red-400 font-bold">Error</td></tr>'; }
+            } catch (e) { 
+                list.innerHTML = '<tr><td colspan="3" class="py-20 text-center text-red-400 font-bold">Connection Error</td></tr>'; 
+            }
         }
 
         function goHome() { clearInterval(timerInterval); isGameRunning = false; resultModal.classList.add('hidden'); switchView('intro'); }
