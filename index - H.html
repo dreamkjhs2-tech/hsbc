@@ -106,7 +106,7 @@
     </div>
 
     <script>
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbxK0C4QhvWbhPL7BJtwl_NlSyyGiE2zYf-dehqi-gVak26B4EXbu7FIFyRMmGKxJEXE/exec";
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwXDGnPj5x-vCllV3xZxBjagoc-E5bZJ015oWOYISp3t27Il9kECCfSrOk3WD5Uwi6s/exec";
 
         function getCookie(name) {
             let value = "; " + document.cookie; let parts = value.split("; " + name + "=");
@@ -123,30 +123,45 @@
 
         // 페이지 로딩 시 시트 데이터 호출
         window.onload = loadSettings;
-
 async function loadSettings() {
-    console.log("1. Attempting to fetch settings from GAS..."); // 시작 로그
+    console.log("1. Fetching data from:", GAS_URL);
     try {
-        const response = await fetch(GAS_URL + "?t=" + new Date().getTime());
-        console.log("2. Response received status:", response.status); // 응답 상태 로그
+        // 캐시 방지를 위해 시간 파라미터 추가
+        const response = await fetch(GAS_URL + (GAS_URL.includes('?') ? '&' : '?') + "t=" + new Date().getTime());
         
-        const data = await response.json();
-        console.log("3. Sheet Data Detail:", data); // 데이터 세부 내용 로그
-
-        if (data.settings) {
-            const s = data.settings;
-            document.getElementById('txt-mainTitle').innerText = String(s.mainTitle || "Reflex Challenge");
-            document.getElementById('txt-prizeInfo1').innerText = String(s.prizeInfo1 || "");
-            document.getElementById('txt-prizeInfo2').innerText = String(s.prizeInfo2 || "");
-            document.getElementById('txt-adText').innerText = String(s.adText || "");
-            document.getElementById('txt-adBrand').innerHTML = String(s.adBrand || "").replace(/\n/g, "<br>");
-            document.getElementById('txt-modalAdText').innerText = String(s.modalAdText || "");
-            document.getElementById('txt-modalAdBrand').innerText = String(s.modalAdBrand || "");
-            document.getElementById('lnk-modalAd').href = String(s.modalAdLink || "#");
-            console.log("4. UI Update Complete!"); 
+        if (!response.ok) {
+            console.log("2. Server response was not OK. Using default values.");
+            return;
         }
-    } catch (e) { 
-        console.error("CRITICAL ERROR:", e); // 에러 발생 시 아주 자세히 출력
+
+        const data = await response.json();
+        console.log("3. Data received:", data);
+
+        if (data && data.settings) {
+            const s = data.settings;
+            // ID가 있는 요소들에 안전하게 데이터 주입
+            const updateText = (id, val) => {
+                const el = document.getElementById(id);
+                if (el && val) el.innerText = String(val);
+            };
+
+            updateText('txt-mainTitle', s.mainTitle);
+            updateText('txt-prizeInfo1', s.prizeInfo1);
+            updateText('txt-prizeInfo2', s.prizeInfo2);
+            updateText('txt-adText', s.adText);
+            updateText('txt-modalAdText', s.modalAdText);
+            updateText('txt-modalAdBrand', s.modalAdBrand);
+
+            if (s.adBrand && document.getElementById('txt-adBrand')) {
+                document.getElementById('txt-adBrand').innerHTML = String(s.adBrand).replace(/\n/g, "<br>");
+            }
+            if (s.modalAdLink && document.getElementById('lnk-modalAd')) {
+                document.getElementById('lnk-modalAd').href = String(s.modalAdLink);
+            }
+            console.log("4. UI Update Complete!");
+        }
+    } catch (e) {
+        console.error("Connection blocked by browser or GAS error:", e);
     }
 }
 
