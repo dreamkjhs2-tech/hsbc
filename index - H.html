@@ -124,29 +124,31 @@
         // 페이지 로딩 시 시트 데이터 호출
         window.onload = loadSettings;
 
-        async function loadSettings() {
-            try {
-                // 캐시 방지를 위해 랜덤 파라미터 추가
-                const response = await fetch(GAS_URL + "?t=" + new Date().getTime());
-                const data = await response.json();
-                
-                if (data.settings) {
-                    const s = data.settings;
-                    // 데이터가 있을 때만 화면 업데이트 (강제 문자열 변환 처리)
-                    if(s.mainTitle) document.getElementById('txt-mainTitle').innerText = String(s.mainTitle);
-                    if(s.prizeInfo1) document.getElementById('txt-prizeInfo1').innerText = String(s.prizeInfo1);
-                    if(s.prizeInfo2) document.getElementById('txt-prizeInfo2').innerText = String(s.prizeInfo2);
-                    if(s.adText) document.getElementById('txt-adText').innerText = String(s.adText);
-                    if(s.adBrand) document.getElementById('txt-adBrand').innerHTML = String(s.adBrand).replace(/\n/g, "<br>");
-                    if(s.modalAdText) document.getElementById('txt-modalAdText').innerText = String(s.modalAdText);
-                    if(s.modalAdBrand) document.getElementById('txt-modalAdBrand').innerText = String(s.modalAdBrand);
-                    if(s.modalAdLink) document.getElementById('lnk-modalAd').href = String(s.modalAdLink);
-                    console.log("Settings applied successfully!");
-                }
-            } catch (e) { 
-                console.error("CMS load failed", e); 
-            }
+async function loadSettings() {
+    console.log("1. Attempting to fetch settings from GAS..."); // 시작 로그
+    try {
+        const response = await fetch(GAS_URL + "?t=" + new Date().getTime());
+        console.log("2. Response received status:", response.status); // 응답 상태 로그
+        
+        const data = await response.json();
+        console.log("3. Sheet Data Detail:", data); // 데이터 세부 내용 로그
+
+        if (data.settings) {
+            const s = data.settings;
+            document.getElementById('txt-mainTitle').innerText = String(s.mainTitle || "Reflex Challenge");
+            document.getElementById('txt-prizeInfo1').innerText = String(s.prizeInfo1 || "");
+            document.getElementById('txt-prizeInfo2').innerText = String(s.prizeInfo2 || "");
+            document.getElementById('txt-adText').innerText = String(s.adText || "");
+            document.getElementById('txt-adBrand').innerHTML = String(s.adBrand || "").replace(/\n/g, "<br>");
+            document.getElementById('txt-modalAdText').innerText = String(s.modalAdText || "");
+            document.getElementById('txt-modalAdBrand').innerText = String(s.modalAdBrand || "");
+            document.getElementById('lnk-modalAd').href = String(s.modalAdLink || "#");
+            console.log("4. UI Update Complete!"); 
         }
+    } catch (e) { 
+        console.error("CRITICAL ERROR:", e); // 에러 발생 시 아주 자세히 출력
+    }
+}
 
         function switchView(v) { Object.values(views).forEach(x => x.classList.add('hidden-view')); views[v].classList.remove('hidden-view'); }
         
