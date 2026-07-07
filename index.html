@@ -43,18 +43,18 @@
 
             <!-- 버튼 3개 노출 영역 -->
             <div class="grid grid-cols-1 gap-4">
-                <a href="https://dreamkjhs2-tech.github.io/tyli/" target="_blank" class="flex items-center justify-between bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition group">
+                <button onclick="showView('event-detail')" class="w-full flex items-center justify-between bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 text-left transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center text-amber-500 text-xl">
                             <i class="fa-solid fa-gift"></i>
                         </div>
                         <div>
                             <div class="font-bold text-gray-900 text-lg">트래블월렛 이벤트 확인하기</div>
-                            <div class="text-xs text-gray-500 mt-0.5">진행 중인 제휴 이벤트 링크로 이동</div>
+                            <div class="text-xs text-gray-500 mt-0.5">제휴 이벤트 개요 및 마케팅 가이드 확인</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 group-hover:text-sky-500 transition"></i>
-                </a>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-sky-500 transition"></i>
+                </button>
 
                 <button onclick="showView('sub-script-menu')" class="w-full flex items-center justify-between bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 text-left transition group">
                     <div class="flex items-center gap-4">
@@ -87,6 +87,66 @@
             <div class="border-t pt-6 mt-8">
                 <h3 class="text-lg font-bold text-gray-900 px-1 mb-4">🙋‍♂️ 자주 묻는 질문 (FAQ)</h3>
                 <div id="faq-container" class="space-y-3"></div>
+                
+                <!-- [신규 추가] FAQ 하단 더보기 하이퍼링크 영역 -->
+                <div class="text-center pt-5 pb-2">
+                    <a href="https://mitravels.mibankins.com/qna" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-sky-600 font-medium underline transition decoration-dashed underline-offset-4">
+                        <span>&lt;해외여행자보험 FAQ 더보기&gt;</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== 버튼1 클릭 시 이동할 이벤트 상세 화면 ==================== -->
+        <section id="view-event-detail" class="hidden w-full space-y-5">
+            <h3 class="text-xl font-bold text-gray-900 px-1 mb-1"><i class="fa-solid fa-gift mr-1 text-amber-500"></i> 제휴 이벤트 및 매체 가이드</h3>
+            
+            <div class="bg-white p-5 rounded-xl shadow-md border border-gray-100 space-y-3">
+                <h4 class="text-lg font-bold text-amber-600 border-b pb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-info"></i> 1. 이벤트 개요
+                </h4>
+                <div class="text-base font-medium leading-relaxed text-gray-800 space-y-2">
+                    <p><span class="font-bold text-gray-900">🎁 이벤트명:</span> 안심가이드 받고, 여행지원금 1만원 받기</p>
+                    <p><span class="font-bold text-gray-900">📅 이벤트 기간:</span> 7월 13일 ~ 9월 12일</p>
+                    <p><span class="font-bold text-gray-900">✅ 참여 조건:</span> 트래블월렛 앱 내 상담 신청 완료</p>
+                    <p><span class="font-bold text-gray-900">💰 고객 혜택:</span> 상담 진행 &gt; 고객 등록 및 상품소개 동의 완료 시 <span class="text-emerald-600 font-bold">네이버페이 1만원권 익월 중 지급</span> <span class="text-xs text-red-500 block font-normal mt-0.5">(※ 6개월 내 상담신청 이벤트 참여 고객은 지급 제한)</span></p>
+                    <p><span class="font-bold text-gray-900">🎯 상담 핵심 컨셉:</span> 해외여행 전 필수 체크리스트(보장공백, 보험금 청구 꿀팁 등)를 점검해 주며 정보제공과 세일즈를 병행</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl shadow-md border border-gray-100 space-y-3">
+                <h4 class="text-lg font-bold text-sky-600 border-b pb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-mobile-screen-button"></i> 2. 제휴 매체(트래블월렛) 이해
+                </h4>
+                <div class="text-base font-medium leading-relaxed text-gray-800 space-y-2">
+                    <p><span class="font-bold text-gray-900">🌐 매체 특성:</span> 환전 수수료 절감 및 해외 결제 편의성을 제공하는 대표적인 모바일 환전/결제 플랫폼</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border text-sm space-y-1.5 text-gray-700">
+                        <div class="font-bold text-gray-900 text-[15px] mb-1">💡 이용자 성향 및 속성</div>
+                        <p>• <span class="font-bold">20대 후반 ~ 40대 중반</span>의 해외여행객 및 출장 고객 중심</p>
+                        <p>• <span class="font-bold">실속과 가성비</span>를 중시하며, 모바일 활용 및 비대면 서비스에 익숙함</p>
+                        <p>• 해외여행 준비 단계에서 능동적으로 정보를 탐색하는 <span class="font-bold text-sky-700">스마트 컨슈머</span> 성향이 매우 강함</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl shadow-md border border-gray-100 space-y-3">
+                <h4 class="text-lg font-bold text-emerald-600 border-b pb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-bullseye"></i> 3. 고객 니즈 (상담 포인트)
+                </h4>
+                <ul class="text-base font-medium leading-loose text-gray-800 list-disc pl-5 space-y-1">
+                    <li><span class="font-bold text-gray-900">해외여행보험 보험금 청구 꿀팁:</span> 형식적인 안내가 아닌, 실제 해외여행 중 도움이 되는 정보 제공</li>
+                    <li><span class="font-bold text-gray-900">여행 전후 보장공백 점검:</span> 여행 전후 고객 보험 점검 및 보장 공백 체크</li>
+                    <li><span class="font-bold text-gray-900">실손보험료 환급제도:</span> 해외여행과 관련한 유익한 제도 설명</li>
+                </ul>
+            </div>
+
+            <div class="pt-2">
+                <a href="https://dreamkjhs2-tech.github.io/tyli/" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 text-lg shadow transition">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>트래블월렛 이벤트 확인하기 (페이지 이동)</span>
+                </a>
             </div>
         </section>
 
@@ -129,10 +189,10 @@
                 <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-3 text-sky-600">📞 1. 인트로 소개 스크립트</h3>
                 <div class="text-xs bg-sky-50 text-sky-800 p-2.5 rounded-lg mb-3 font-bold">목적: 출국 전 안부 인사, 이벤트 참여 감사 및 '네이버페이 리워드' 조건 명시</div>
                 <div class="w-full text-lg font-medium leading-loose text-gray-800 bg-slate-50 p-4 rounded-xl border shadow-inner mb-4 break-words space-y-3">
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "안녕하세요, OOO 고객님! 동양생명 수호천사 안심 가이드 OOO입니다. 이번에 트래블월렛 통해서 저희 안심여행 점검 상담 신청해 주셔서 전화드렸습니다. 여행 준비는 잘 되어 가시나요?"</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "안녕하세요, OOO 고객님! 동양생명 수호천사 안심 가이드 OOO입니다. 이번에 트래블월렛 통해서 저희 안심여행 점검 상담 신청해 주셔서 전화드렸습니다. 여행 준비는 차질 없이 잘 되어 가시나요?"</p>
                     <p><span class="text-gray-500 font-bold">■ 고객:</span> "네, 준비 중이에요."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "네, 여행 준비 중에 이렇게 시간 내주셔서 감사합니다. 해외여행 가시기 전에 이런 '안심여행 점검' 한번 받아두시면 현지에서 정말 큰 도움이 되거든요."</p>
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "오늘 안심 가이드 상담 완료하시고, <span class="bg-yellow-100 font-bold px-1 rounded text-amber-955">마케팅 수신 동의</span>를 해주시면, 감사의 의미로 <span class="bg-emerald-100 font-bold px-1 rounded text-emerald-950">네이버페이 1만 원권</span>을 다음 달 중에 문자로 지급해 드릴 예정입니다."</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "오늘 저와 안심 가이드 상담 완료하시고, <span class="bg-yellow-100 font-bold px-1 rounded text-amber-955">마케팅 수신 동의</span>를 해주시면, 감사의 의미로 <span class="bg-emerald-100 font-bold px-1 rounded text-emerald-950">네이버페이 1만 원권</span>을 다음 달 중에 문자로 지급해 드릴 예정입니다."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "그럼 고객님의 안전한 여행을 위해 꼭 필요한 정보만 딱 요약해서 안내해 드릴게요!"</p>
                 </div>
                 <button onclick="showView('script-21')" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-3 rounded-xl flex items-center justify-center gap-1.5 text-base shadow transition break-all">
@@ -148,23 +208,23 @@
                 <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-3 text-sky-600">📝 2. 해외여행보험 청구 팁 스크립트</h3>
                 <div class="text-xs bg-sky-50 text-sky-800 p-2.5 rounded-lg mb-3 font-bold">목적: 여행자보험 필수 체크 및 핵심 청구 규정(180일 규칙, 휴대품 범위) 안내</div>
                 <div class="w-full text-lg font-medium leading-loose text-gray-800 bg-slate-50 p-4 rounded-xl border shadow-inner mb-4 break-words space-y-3">
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "첫 번째로 가장 중요한 **'해외여행보험 청구 팁'**입니다. 많은 분들이 보험 가입만 신경 쓰시지, 정작 현지에서 사고가 났을 때 어떻게 청구해야 하는지는 잘 모르시거든요. 혹시 여행자보험 가입은 완료하셨을까요?"</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "첫 번째로 가장 중요하게 생각하시는 **'해외여행보험 청구 팁'**입니다. 많은 분들이 보험 가입만 신경 쓰시지, 정작 현지에서 사고가 났을 때 어떻게 청구해야 하는지는 잘 모르시거든요. 혹시 여행자보험 가입은 완료하셨을까요?"</p>
                     <p><span class="text-gray-500 font-bold">■ 고객:</span> "(미가입 시) 아직 안 했어요 / (가입 시) 네, 했어요."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "(미가입 시) 아, 그러시다면 출국 전에 해외여행보험을 꼭 가입하고 나가셔야 합니다! (가입 시) 네, 정말 잘하셨습니다."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "해외는 우리나라와 의료 환경이나 시스템이 달라서, 사고가 나면 당황하기 쉽고 청구 서류 누락이 정말 많습니다. 그래서 꼭 기억하셔야 할 핵심 내용들을 정리해 드릴게요."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "우선 해외여행보험은 기본적으로 고객님이 실제 출국했다가 귀국하셨는지를 증명하는 <span class="bg-blue-50 text-blue-700 font-bold px-1 rounded">‘출입국사실증명서’</span>가 공통으로 꼭 필요하고요."</p>
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "가장 중요한 건 여행 중 '질병이나 상해 치료비 보장'인데요. 해외 현지 병원에서 진료나 입원을 하셨을 때는, <span class="bg-amber-100 text-amber-955 font-bold px-1 rounded">1️⃣진단명이 명확히 기재된 해외 병원 의료 기록지, 2️⃣진단서 또는 의사소견서, 3️⃣처방전, 4️⃣의료비와 약제비 영수증</span>을 꼭! 현지에서 발급받아 오셔야 합니다. 이거 안 받아오시면 나중에 다시 받기가 정말 어렵거든요."</p>
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "내용이 조금 복잡하시죠? 고객님 현지에서 당황하지 않으시게, 제가 지금 말씀드린 '해외여행보험 보험금청구 서류 리스트'를 문자로 보내드릴까요?"</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "가장 중요한 건 여행 중 '질병이나 상해 치료비 보장'인데요. 해외 현지 병원에서 진료나 입원을 하셨을 때는, <span class="bg-amber-100 text-amber-955 font-bold px-1 rounded">1️⃣진단명이 명확히 기재된 해외 병원 의료 기록지, 2️⃣진단서 또는 의사소견서, 3️⃣처방전, 4️⃣의료비와 약제비 영수증</span>을 꼭! 현지에서 떼어 오셔야 한다고 안내해 드립니다. 이거 안 받아오시면 나중에 다시 받기가 정말 어렵거든요."</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "내용이 조금 복잡하시죠? 고객님 현지에서 당황하지 않으시게, 제가 지금 말씀드린 '해외여행 보험 보험금청구 서류 리스트'를 보기 편하게 정리해서 문자로 하나 보내드릴까요?"</p>
                     <p><span class="text-gray-500 font-bold">■ 고객:</span> "네, 문자로 보내주세요."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "네, 통화 끝나고 바로 넣어드릴게요! 그리고 추가로 기억하셔야 할 점은,"</p>
                     
                     <div class="pl-3 border-l-4 border-sky-300 space-y-2 text-gray-700 bg-white p-3 rounded-lg text-[16px]">
                         <p><span class="font-bold text-sky-700">■ 청구 시효:</span> 여행자보험도 일반 보험과 마찬가지로 사고일로부터 <span class="text-red-600 font-bold">3년 이내</span>에 청구하지 않으면 소멸하니까 미루지 마셔야 하고요.</p>
                         <p><span class="font-bold text-sky-700">■ 180일 보장 규정:</span> 여행 중에 발생한 질병이나 상해로 치료를 받다가 보험 기간이 끝나더라도, <span class="text-red-600 font-bold">종료일로부터 180일까지</span>는 계속 보장을 받으실 수 있습니다. 특히 귀국 후에 치료를 받기 시작하더라도 <span class="text-red-500 font-bold">종료 후 30일 이내</span>에 의사 처방이나 치료를 받으셔야 그날부터 180일 동안(통원은 180일 내 최대 90회) 보장이 가능합니다.</p>
-                        <p><span class="font-bold text-sky-700">■ 휴대품 손해:</span> 정말 문의가 많은 부분인데요. 휴대품 분실은 보장이 안되시고,<span class="text-merald-700 font-bold">‘파손’이나 ‘도난’은 1개당 20만 원 한도 내</span>에서 보장됩니다.</p>
+                        <p><span class="font-bold text-sky-700">■ 휴대품 손해:</span> 정말 문의가 많은 부분인데요. 휴대품 '분실'은 보장이 안 되고, <span class="text-emerald-700 font-bold">‘파손’이나 ‘도난’은 1개당 20만 원 한도 내</span>에서 보장됩니다.</p>
                     </div>
                     
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "전체적인 세부 서류나 상세 내용은 문자로 꼼꼼하게 같이 발송해 드릴게요. 회사별로 세부 규정은 조금씩 다를 수 있으니 참고용으로 봐주시면 됩니다."</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "전체적인 세부 서류나 상세 내용은 앞서 말씀드린 대로 문자로 꼼꼼하게 같이 발송해 드릴게요. 회사별로 세부 규정은 조금씩 다를 수 있으니 참고용으로 봐주시면 됩니다."</p>
                 </div>
                 <button onclick="showView('script-22')" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-3 rounded-xl flex items-center justify-center gap-1.5 text-base shadow transition break-all">
                     <span>2-2 여행전후 보장점검 스크립트 가기</span>
@@ -202,7 +262,7 @@
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "세 번째는 은근히 많은 분들이 놓치시는 **'국내 실손보험료 환급제도'**입니다. 혹시 이번 여행이 유학, 출장, 워킹홀리데이처럼 연속해서 <span class="bg-yellow-100 text-amber-955 font-bold px-1 rounded">3개월(90일) 이상</span> 머무시는 장기 체류이실까요?"</p>
                     <p><span class="text-gray-500 font-bold">■ 고객:</span> "아니요, 단기예요 / 네, 장기예요."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "(단기여도) 아, 이번엔 단기이시더라도 나중에 혹시라도 3개월 이상 해외 나갈 일이 생기시면 꼭 알아두세요! <span class="text-indigo-600 font-bold">2009년 10월 이후 실손보험 가입자분들</span>은 해외 체류 기간 동안 한국에 납부한 실손의료보험료를 <span class="text-emerald-700 font-bold">사후에 환급받거나, 미리 납입을 중지</span>할 수 있습니다."</p>
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "해외에 있는 동안은 한국 병원을 이용하지 못하시니까 혜택을 주는 제도인데요. 귀국하신 후에 <span class="underline font-bold">출입국사실증명서</span>를 해당 보험사에 제출하시면 보험료를 돌려받으실 수 있습니다. 출국 전 미리 중지 신청을 하셔도 되고요."</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "해외에 있는 동안은 한국 병원을 이용하지 못하시니까 국가에서 혜택을 주는 제도인데요. 귀국하신 후에 <span class="underline font-bold">출입국사실증명서</span>를 해당 보험사에 제출하시면 보험료를 돌려받으실 수 있습니다. 출국 전 미리 중지 신청을 하셔도 되고요."</p>
                 </div>
                 <button onclick="showView('script-24')" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-3 rounded-xl flex items-center justify-center gap-1.5 text-base shadow transition break-all">
                     <span>2-4 상담마무리 스크립트 가기</span>
@@ -215,13 +275,13 @@
         <section id="view-script-24" class="hidden w-full space-y-4">
             <div class="w-full bg-white p-5 rounded-xl shadow-md border border-gray-100 mt-1">
                 <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-3 text-sky-600">👋 5. 상담마무리 스크립트</h3>
-                <div class="text-xs bg-sky-50 text-sky-800 p-2.5 rounded-lg mb-3 font-bold">목적: 통화 만족도 확인, 동양생명 브랜드 각인 및 통화 깔끔하게 종료</div>
+                <div class="text-xs bg-sky-50 text-sky-800 p-2.5 rounded-lg mb-3 font-bold">목적: 통화 만족도 확인, 동양생명 수호천사 브랜드 각인 및 통화 종료</div>
                 <div class="w-full text-lg font-medium leading-loose text-gray-800 bg-slate-50 p-4 rounded-xl border shadow-inner mb-4 break-words space-y-3">
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "오늘 안내해 드린 내용 중 가장 중요한 '해외여행보험 청구 필수 서류 리스트'는 문자로 보내드릴게요."</p>
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "잠깐의 시간이었지만 해외여행 전 준비하시는 데 도움 좀 되셨을까요?"</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "오늘 안내해 드린 내용 중 가장 중요한 '해외여행보험 청구 필수 서류 리스트'는 지금 바로 문자로 보내드릴게요."</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "잠깐의 시간이었지만 출국 전 준비하시는 데 도움 좀 되셨을까요?"</p>
                     <p><span class="text-gray-500 font-bold">■ 고객:</span> "네, 도움 되었네요. 감사합니다."</p>
                     <p><span class="text-sky-600 font-extrabold">■ FC:</span> "아유, 천만에요. 안전하게 잘 다녀오시는 게 최고입니다. 다녀오셔서 보험 관련해서 궁금한 점이 생기시거나, 보장 추가 등 필요사항이 있으시면 <span class="text-sky-600 font-extrabold underline">언제든 저 수호천사 OOO에게</span> 연락 주시고요."</p>
-                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "조심히 잘 다녀오세요! 지금까지 <span class="bg-sky-100 text-sky-950 font-bold px-1 rounded">동양생명 수호천사 OOO</span>이었습니다. 감사합니다!"</p>
+                    <p><span class="text-sky-600 font-extrabold">■ FC:</span> "조심히 잘 다녀오세요! 지금까지 <span class="bg-sky-100 text-sky-950 font-bold px-1 rounded">동양생명 수호천사 안심 가이드 OOO</span>이었습니다. 감사합니다!"</p>
                 </div>
                 <button onclick="showView('sub-script-menu')" class="w-full bg-slate-700 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-base shadow transition">
                     <i class="fa-solid fa-list"></i>
@@ -250,7 +310,7 @@
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-1">
                     <div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-red-600 text-sm">4. 여행중 사망 / 후유장해 / 상속</span><span class="text-xs bg-red-50 text-red-700 px-2 py-0.5 rounded-md font-bold">의료기관 및 관공서</span></div>
-                    <div class="text-base text-gray-800 pt-1 font-medium">• 사망 시: 사망진단서(시체검안서) 원/사본, 피보험자 기본증명서, 현지 경찰서 사고사실 입증 서류 등<br>• 후유장해: 후유장해진단서, 현지 경찰서 서류 등<br>• 상속: 가족관계서류, 위임장, 인감증명서(또는 본인서명사실확인서)</div>
+                    <div class="text-base text-gray-800 pt-1 font-medium">• 사망 시: 사망진단서(시체검안서) 원/사본, 피보험자 기본증명서, 현지 경찰서 사고사실 입증 서류 등<br>• 후유장해: 후유장해진단서, 현지 경찰서 서류 등<br>• 상속: 가족관계서류, 위임장, 인감증명서 등</div>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-1">
                     <div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-amber-600 text-sm">5. 휴대품 도난 / 파손</span><span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded-md font-bold">경찰/통신사/항공사</span></div>
@@ -261,16 +321,16 @@
                     <div class="text-base text-gray-800 pt-1 font-medium">• 항공기 지연: 항공사 지연 확인서(승객 명단 없는 경우 항공권 사본 지참), 식음료 등 비용 영수증<br>• 수하물 지연: 항공사 지연 확인서, 대체 생필품 구매 영수증</div>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-1">
-                    <div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-gray-900 text-sm">7. 여행중단 (질병입원, 천재지변 등)</span><span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md font-bold">항공사/관공서 등</span></div>
+                    <div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-gray-900 text-sm">7. 여행중단 (질병입원, 천재지변 등 귀국)</span><span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md font-bold">항공사/관공서 등</span></div>
                     <div class="text-base text-gray-800 pt-1 font-medium">• 여행 중단 사유를 증명할 수 있는 사고 증빙 서류<br>• 중단으로 인해 추가 발생한 항공비, 숙박비 등 영수증 일체</div>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-1">
                     <div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-emerald-600 text-sm">8. 여권 재발급</span><span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-bold">외교부</span></div>
-                    <div class="text-base text-gray-800 pt-1 font-medium">• 긴급 여권/여행 증명서 사본 중 1가지<br>• 신규 발급 여권 사본<br>• 발급 수수료 영수증</div>
+                    <div class="text-base text-gray-800 pt-1 font-medium">• 긴급 여권/여행 증명서 사본 중 1가지, 신규 발급 여권 사본, 발급 수수료 영수증</div>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-1">
                     <div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-indigo-600 text-sm">9. 여행 중 빈집 도난 및 배상책임</span><span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold">경찰서 / 증빙필수</span></div>
-                    <div class="text-base text-gray-800 pt-1 font-medium">• 빈집 도난: 사건사고사실확인원(경찰서), 도난 전 물건 구매 영수증 및 촬영 사진<br>• 배상책임: 사진, 영수증 등 사고를 확인할 수 있는 서류</div>
+                    <div class="text-base text-gray-800 pt-1 font-medium">• 빈집 도난: 사건사고사실확인원(경찰서), 도난 전 물건 구매 영수증 및 촬영 사진<br>• 배상책임: 사진, 영수증 등 사고를 확인할 수 있는 서류 일체</div>
                 </div>
             </div>
 
@@ -281,7 +341,7 @@
                     <span>발송용 LMS 문자 편집기 (자유롭게 수정 가능)</span>
                 </div>
                 <textarea id="sms-preview" class="w-full h-96 text-base text-gray-800 font-medium bg-white p-4 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none leading-relaxed shadow-inner resize-y"></textarea>
-                <div class="text-xs text-gray-400 mt-1.5 px-1">* 9가지 항목 전체가 빠짐없이 정리되어 있습니다. 자유롭게 편집 후 하단 버튼으로 복사하세요.</div>
+                <div class="text-xs text-gray-400 mt-1.5 px-1">* 내용이 정리되어 있습니다. 자유롭게 편집 후 하단 버튼으로 복사하세요.</div>
             </div>
         </section>
 
@@ -298,7 +358,6 @@
 
     <!-- ==================== 자바스크립트 로직 ==================== -->
     <script>
-        // [수정 완료] 상단 1번부터 9번까지의 모든 카드뷰 내용을 누락 없이 순서대로 온전히 동기화 완료했습니다.
         const lmsText = `[동양생명] 해외여행보험 보험금청구 서류 안내
 
 안녕하세요 고객님, 동양생명 ㅇㅇㅇ입니다.
@@ -339,8 +398,6 @@
 ■ 9. 여행 중 빈집 도난 및 배상책임
 - 빈집 도난: 경찰서 사건사고사실확인원, 도난 전 물건 구매 영수증 및 촬영 사진
 - 배상책임: 사진, 영수증 등 사고를 확인할 수 있는 서류 일체
-
-* 일부 항목은 회사별로 상이할 수 있음
 
 안전하고 행복한 여행길 되시길 수호천사가 기원합니다. 추가 문의사항은 언제든 담당 FC에게 연락해 주세요!`;
 
